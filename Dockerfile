@@ -10,7 +10,7 @@ WORKDIR /usr/src/app
 RUN chmod 777 /usr/src/app
 
 # Clone the GitHub repository
-RUN git clone <URL_of_your_GitHub_repository> app
+RUN git clone https://github.com/BalaPriyan/helios-mirror app
 
 # Set the working directory to the cloned repository
 WORKDIR /usr/src/app/app
