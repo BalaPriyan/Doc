@@ -4,8 +4,7 @@
 pip3 install -r requirements.txt
 
 # Build the Docker image
-docker build -t my_docker_image .
+sudo docker build . -t mltb
 
 # Run the Docker image
-docker run my_docker_image && sh start.sh
-￼Enter
+sudo docker run -p 80:80 -p 8080:8080 mltb
