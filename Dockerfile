@@ -1,17 +1,21 @@
-# Use a base image with Git and Docker installed
+# Use a base image with Git, Docker, Python, and pip installed
 FROM alpine
 
 # Install required packages
-RUN apk update && apk add --no-cache git docker-cli python3
+RUN apk update && \
+    apk add --no-cache git docker-cli python3 python3-dev py3-pip
+
+# Copy the setup.sh script into the container
+COPY setup.sh /app/setup.sh
+
+# Grant execution permission to the script
+RUN chmod +x /app/setup.sh
 
 # Clone the GitHub repository
-RUN git clone https://github.com/BalaPriyan/helios-mirror /app/repo
+RUN git clone  /app/repo
 
 # Set the working directory
-WORKDIR /app/repo
+WORKDIR /app
 
-# Copy the script into the container
-COPY run_script.sh /app/run_script.sh
-
-# Run the script
-CMD ["sh", "/app/run_script.sh"]
+# Execute the setup script
+CMD ["/app/setup.sh"]
