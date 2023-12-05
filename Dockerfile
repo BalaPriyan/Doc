@@ -1,9 +1,12 @@
-# Use a base image with Git, Docker, Python, and pip installed
+# Use a base image with Git, Python, and pip installed
 FROM alpine
 
 # Install required packages
 RUN apk update && \
-    apk add --no-cache git docker-cli python3 python3-dev py3-pip
+    apk add --no-cache git python3 python3-dev py3-pip
+
+# Install Docker
+RUN apk add --no-cache docker
 
 # Copy the setup.sh script into the container
 COPY setup.sh /app/setup.sh
