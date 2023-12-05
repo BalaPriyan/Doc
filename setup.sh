@@ -7,10 +7,10 @@ cd /app/repo
 pip3 install -r requirements.txt
 
 # Build Docker image
-docker build -t my_docker_image .
+docker build . -t mltb
 
 # Run the Docker image
-docker run my_docker_image
+sudo docker run -p 80:80 -p 8080:8080 mltb
 
 # Execute start.sh if needed
 #sh start.sh
