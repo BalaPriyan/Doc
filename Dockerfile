@@ -12,7 +12,7 @@ COPY setup.sh /app/setup.sh
 RUN chmod +x /app/setup.sh
 
 # Clone the GitHub repository
-RUN git clone  /app/repo
+RUN git clone https://github.com/BalaPriyan/helios-mirror /app/repo
 
 # Set the working directory
 WORKDIR /app
