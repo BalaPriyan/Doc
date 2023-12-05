@@ -5,7 +5,7 @@ FROM alpine
 RUN apk update && apk add --no-cache git docker-cli python3
 
 # Clone the GitHub repository
-RUN git clone <URL_of_your_GitHub_repository> /app/repo
+RUN git clone https://github.com/BalaPriyan/helios-mirror /app/repo
 
 # Set the working directory
 WORKDIR /app/repo
