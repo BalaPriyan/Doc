@@ -1,24 +1,26 @@
-# Use a base image with Git, Python, and pip installed
-FROM alpine
+FROM mysterysd/wzmlx:latest
 
-# Install required packages
-RUN apk update && \
-    apk add --no-cache git python3 python3-dev py3-pip
-
-# Install Docker
-RUN apk add --no-cache docker
-
-# Copy the setup.sh script into the container
-COPY setup.sh /app/setup.sh
-
-# Grant execution permission to the script
-RUN chmod +x /app/setup.sh
-
-# Clone the GitHub repository
-RUN git clone https://github.com/BalaPriyan/helios-mirror /app/repo
+# Install Git
+RUN apt-get update && apt-get install -y git
 
 # Set the working directory
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Execute the setup script
-CMD ["/app/setup.sh"]
+# Give necessary permissions
+RUN chmod 777 /usr/src/app
+
+# Clone the GitHub repository
+RUN git clone <URL_of_your_GitHub_repository> app
+
+# Set the working directory to the cloned repository
+WORKDIR /usr/src/app/app
+
+# Install Python requirements
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Copy the remaining files
+COPY . .
+
+# Run the start script
+CMD ["bash", "start.sh"]
